@@ -9,3 +9,5 @@
 *.png
 coverage
 .tags
+/hacktools/firstnames.txt
+/hacktools/usernames-onemonthsimple.txt
