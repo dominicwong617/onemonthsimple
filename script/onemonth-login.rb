@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# NOTE: This script was useful until a more ambiguous username and password
+# error message was introduced.
 require "net/http"
 require "uri"
 
