@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length => {:within => 6..40},
                        :on => :create,
-                       :if => :password
+                       :if => :password,
+                       :format => { :with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A=Z])(?=.*[\@\#\$\%\^\&\+\=]).*\Z/ }
 
   validates_presence_of :email
   validates_uniqueness_of :email
