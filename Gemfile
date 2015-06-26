@@ -13,6 +13,7 @@ gem 'rack-attack'
 
 gem 'sqlite3'
 gem 'foreman'
+gem 'rack-attack'
 
 group :development do
   gem 'brakeman'
