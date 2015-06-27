@@ -6,8 +6,8 @@ users = [
      {
        :email => "admin@onemonthsimple.com", 
        :admin => true, 
-       :password => "admin1234", 
-       :password_confirmation => "admin1234", 
+       :password => "Aadmin1234@@", 
+       :password_confirmation => "Aadmin1234@@", 
        :first_name => "Admin", 
        :last_name => "", 
        :user_id =>1 
@@ -15,8 +15,8 @@ users = [
      {
        :email => "jon@onemonthsimple.com", 
        :admin => false, 
-       :password => "password", 
-       :password_confirmation => "password", 
+       :password => "Apassword1@", 
+       :password_confirmation => "Apassword1@", 
        :first_name => "Jon", 
        :last_name => "Rose", 
        :user_id => 2
@@ -24,8 +24,8 @@ users = [
      {
        :email => "chris@onemonthsimple.com", 
        :admin => false, 
-       :password => "mybluepill", 
-       :password_confirmation => "mybluepill", 
+       :password => "Amybluepill1@", 
+       :password_confirmation => "Amybluepill1@", 
        :first_name => "Chris", 
        :last_name => "Castiglione",
        :user_id =>3 
@@ -33,8 +33,8 @@ users = [
      {
        :email => "lee@onemonthsimple.com", 
        :admin => false, 
-       :password => "theredpill", 
-       :password_confirmation => "theredpill", 
+       :password => "Atheredpill1@", 
+       :password_confirmation => "Atheredpill1@", 
        :first_name => "Lee", 
        :last_name => "Matos", 
        :user_id =>4 
@@ -249,14 +249,6 @@ messages.each do |message|
 end
 
 work_info.each do |wi|
-  info = WorkInfo.new(wi.reject {|k| k == :user_id } )
-  info.user_id = wi[:user_id]
-  info.save
-end
-
-
-=begin
-work_info.each do |wi|
   list = [:user_id, :SSN]
   info = WorkInfo.new(wi.reject {|k| list.include?(k)})
   info.user_id = wi[:user_id]
@@ -264,4 +256,3 @@ work_info.each do |wi|
   info.SSN = wi[:SSN]
   info.save
 end
-=end

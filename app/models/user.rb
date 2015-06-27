@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
                        :length => {:within => 6..40},
                        :on => :create,
                        :if => :password,
-                       :format => { :with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A=Z])(?=.*[\@\#\$\%\^\&\+\=]).*\Z/ }
+                       :format => { :with => /\A.*(?=.{10,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\@\#\$\%\^\&\+\=]).*\Z/ }
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
     build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
     build_work_info(POPULATE_WORK_INFO.shuffle.first)
+    work_info.build_key_management(:iv => SecureRandom.hex(32))
     performance.build(POPULATE_PERFORMANCE.shuffle.first)
   end
 
@@ -60,7 +61,7 @@ class User < ActiveRecord::Base
     unless @skip_hash_password == true
       if password.present?
         self.password_salt = BCrypt::Engine.generate_salt
-        self.password_hash = BCrypt::Engine.hash_secret(self.password, self.password_salt)
+        self.password = BCrypt::Engine.hash_secret(self.password, self.password_salt)
       end
     end
   end
