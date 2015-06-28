@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   has_many :pay, :foreign_key => :user_id, :primary_key => :user_id, :dependent => :destroy
   before_create { generate_token(:auth_token) }
 
+  def as_json options=nil
+    super(only: [:user_id, :email, :first_name, :last_name])
+  end
+
   def build_benefits_data
     build_retirement(POPULATE_RETIREMENTS.shuffle.first)
     build_paid_time_off(POPULATE_PAID_TIME_OFF.shuffle.first).schedule.build(POPULATE_SCHEDULE.shuffle.first)
